@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<form method="post" action = "">
+<form method="post" action = "{{route('registration')}}">
     <input type="text" name="name"></br>
     <input  type="text" name="surname"></br>
     <input  type="text" name="login"></br>
