@@ -1,10 +1,9 @@
 <?php
 declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\User;
-
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +21,7 @@ class RegistrationController extends Controller
         ]);
 
         if ($validator->fails()) {
-        return Response(json_encode($validator->errors()->first()),$status = 404);
+            return Response(json_encode(['message' => $validator->errors()->first()]), $status = 404, ['Content-Type' => 'string']);
         }
         $user = User::create([
             'name' => $request->name,
