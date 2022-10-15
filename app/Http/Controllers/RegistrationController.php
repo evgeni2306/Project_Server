@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Support\Facades\Validator;
 
 class RegistrationController extends Controller
@@ -23,12 +23,7 @@ class RegistrationController extends Controller
         if ($validator->fails()) {
             return Response(json_encode(['message' => $validator->errors()->first()]), $status = 404, ['Content-Type' => 'string']);
         }
-        $user = User::create([
-            'name' => $request->name,
-            'surname' => $request->surname,
-            'login' => $request->login,
-            'password' => Hash::make($request->password),
-        ]);
+        $user = User::create($request->all());
         return ($user['id']);
     }
 }
