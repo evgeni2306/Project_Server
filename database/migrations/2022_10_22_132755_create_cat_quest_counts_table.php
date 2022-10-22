@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->string('name', 255)->nullable(false);
             $table->foreignId('profession_id')->constrained('professions');
             $table->foreignId('category_id')->constrained('categories');
+            $table->unique(['profession_id', 'category_id']);
             $table->timestamps();
         });
     }
