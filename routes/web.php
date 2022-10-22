@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthorizationController;
+use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +20,5 @@ Route::get('/', function () {
     return view('form');
 });
 
-Route::post('/registration', [\App\Http\Controllers\RegistrationController::class, 'createUserAction'])->name('registration');
+Route::post('/registration', [RegistrationController::class, 'createUserAction'])->name('registration');
+Route::post('/login', [AuthorizationController::class, 'loginUserAction'])->name('login');
