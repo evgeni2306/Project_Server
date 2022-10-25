@@ -11,10 +11,11 @@ return new class extends Migration {
     {
         Schema::create(self::TABLE_NAME, function (Blueprint $table) {
             $table->id();
-            $table->string('name',255)->nullable(false);
-            $table->string('surname',255)->nullable(false);
-            $table->string('login',255)->nullable(false)->unique();
-            $table->string('password',255)->nullable(false);
+            $table->string('name', 255)->nullable(false);
+            $table->string('surname', 255)->nullable(false);
+            $table->string('login', 255)->nullable(false)->unique();
+            $table->string('key', 255)->nullable(false)->unique();
+            $table->string('password', 255)->nullable(false);
             $table->timestamps();
         });
     }

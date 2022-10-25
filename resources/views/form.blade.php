@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<form method="post" action = "{{route('registration')}}">
-    <input type="text" name="name"></br>
-    <input  type="text" name="surname"></br>
+<form method="post" action = "{{route('login')}}">
+{{--    <input type="text" name="name"></br>--}}
+{{--    <input  type="text" name="surname"></br>--}}
     <input  type="text" name="login"></br>
     <input type="password" name="password"> </br>
     @csrf

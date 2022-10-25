@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class RegistrationController extends Controller
 {
-    public function createUserAction(Request $request): int|Response
+    public function createUserAction(Request $request): string|Response
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
@@ -23,7 +23,9 @@ class RegistrationController extends Controller
         if ($validator->fails()) {
             return Response(json_encode(['message' => $validator->errors()->first()]), $status = 404, ['Content-Type' => 'string']);
         }
-        $user = User::create($request->all());
-        return ($user['id']);
+        $fields = $request->all();
+        $fields['key']=time();
+        $user = User::create($fields);
+        return json_encode(['key' => $user['key']]);
     }
 }
