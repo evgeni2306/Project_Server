@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\AuthorizationController;
 use App\Http\Controllers\RegistrationController;
-use App\Http\Controllers\Simulation\GetSpheresController;
-use App\Http\Controllers\Simulation\GetTechnologiesController;
-use App\Http\Controllers\Simulation\GetProfessionsController;
-use App\Http\Controllers\Simulation\GetDirectionsController;
+use App\Http\Controllers\Interview\GetSpheresController;
+use App\Http\Controllers\Interview\GetTechnologiesController;
+use App\Http\Controllers\Interview\GetProfessionsController;
+use App\Http\Controllers\Interview\GetDirectionsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,10 +23,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('form');
 });
-Route::get('/gs', [GetSpheresController::class, 'getSpheresForSimulation']);
-Route::get('/gd={idd}', [GetDirectionsController::class, 'getDirectionsForSimulation']);
-Route::get('/gt={idd}', [GetTechnologiesController::class, 'getTechnologiesForSimulation']);
-Route::get('/gp={idd}', [GetProfessionsController::class, 'getProfessionsForSimulation']);
+Route::get('/interview/new', [GetSpheresController::class, 'getSpheresForInterview']);
+Route::get('/interview/new/sphere={idd}', [GetDirectionsController::class, 'getDirectionsForInterview']);
+Route::get('/interview/new/sphere/direction={idd}', [GetTechnologiesController::class, 'getTechnologiesForInterview']);
+Route::get('/interview/new/sphere/direction/technology={idd}', [GetProfessionsController::class, 'getProfessionsForInterview']);
 
 Route::post('/registration', [RegistrationController::class, 'createUserAction'])->name('registration');
 Route::post('/login', [AuthorizationController::class, 'loginUserAction'])->name('login');
