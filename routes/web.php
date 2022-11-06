@@ -6,6 +6,7 @@ use App\Http\Controllers\Interview\GetSpheresController;
 use App\Http\Controllers\Interview\GetTechnologiesController;
 use App\Http\Controllers\Interview\GetProfessionsController;
 use App\Http\Controllers\Interview\GetDirectionsController;
+use App\Http\Controllers\Interview\InterviewStartController;
 use App\Http\Controllers\Interview\PreviewPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,7 @@ Route::get('/interview/new/sphere={idd}', [GetDirectionsController::class, 'getD
 Route::get('/interview/new/sphere/direction={idd}', [GetTechnologiesController::class, 'getTechnologiesForInterview']);
 Route::get('/interview/new/sphere/direction/technology={idd}', [GetProfessionsController::class, 'getProfessionsForInterview']);
 Route::get('/interview/new/sphere/direction/technology/profession={idd}', [PreviewPageController::class,'getPreviewPage']);
+Route::post('/interview/start', [InterviewStartController::class,'startInterview']);
 
 Route::post('/registration', [RegistrationController::class, 'createUserAction'])->name('registration');
 Route::post('/login', [AuthorizationController::class, 'loginUserAction'])->name('login');
