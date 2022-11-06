@@ -12,7 +12,7 @@ class GetSpheresController extends Controller
     public function getSpheresForInterview(): string|Response
     {
         $spheres = Sphere::all('name', 'id');
-        if (count($spheres)) {
+        if (count($spheres)==0) {
             return Response(json_encode(['message' => 'Никаких сфер на найдено']), $status = 404, ['Content-Type' => 'string']);
         }
         $spheres = json_encode($spheres);

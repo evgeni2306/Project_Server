@@ -11,7 +11,7 @@ return new class extends Migration {
     {
         Schema::create(self::TABLE_NAME, function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255)->nullable(false);
+            $table->integer('count')->nullable(false)->unsigned();
             $table->foreignId('profession_id')->constrained('professions');
             $table->foreignId('category_id')->constrained('categories');
             $table->unique(['profession_id', 'category_id']);

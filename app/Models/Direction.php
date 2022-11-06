@@ -16,19 +16,10 @@ class Direction extends Model
         'name',
     ];
 
-//    protected function id(): Attribute
-//    {
-//        return Attribute::make(
-//            fn($value, $attributes) => "http://project-server/gt=" . $attributes['id']
-//        );
-//    }
-    protected $casts = [
-        'id' => 'string',
-    ];
     static function getDirBySphereId(int $id)
     {
         $directions = self::where('sphere_id', $id)->select('id', 'name')->get();
-        foreach($directions as $dir){
+        foreach ($directions as $dir) {
             $dir->id = (int)$dir->id;
         }
         return $directions;

@@ -18,4 +18,9 @@ class Profession extends Model
     {
         return self::where('technology_id', $id)->select('id', 'name')->get();
     }
+    static function getProfById(int $id): Collection
+    {
+        return self::where('id', $id)->select('id', 'name')->get();
+    }
+
 }
