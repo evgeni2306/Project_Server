@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 
 class GetProfessionsController extends Controller
 {
-    public function getProfessionsForInterview($id): string|Response
+    public function getProfessionsForInterview( int $id): string|Response
     {
 
         if (is_numeric($id) and $id > 0) {

@@ -14,6 +14,8 @@ class Direction extends Model
 
     protected $fillable = [
         'name',
+        'creator_id',
+        'sphere_id'
     ];
 
     static function getDirBySphereId(int $id)

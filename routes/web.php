@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\AuthorizationController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\GenerateContentController;
 use App\Http\Controllers\Interview\GetSpheresController;
 use App\Http\Controllers\Interview\GetTechnologiesController;
 use App\Http\Controllers\Interview\GetProfessionsController;
 use App\Http\Controllers\Interview\GetDirectionsController;
 use App\Http\Controllers\Interview\InterviewStartController;
 use App\Http\Controllers\Interview\PreviewPageController;
+use App\Http\Controllers\Interview\GetNextQuestionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +22,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/generate={admin}', [GenerateContentController::class, 'createContent']);
 
+Route::get('/presentation', function () {
+    return redirect('https://docs.google.com/presentation/d/1hwJfUa-yMfKX2mtrfUrhj-Uwvl3FVTXP9D6tabs00wA/edit?usp=sharing');
+});
 
 Route::get('/', function () {
     return view('form');
@@ -31,6 +37,11 @@ Route::get('/interview/new/sphere/direction={idd}', [GetTechnologiesController::
 Route::get('/interview/new/sphere/direction/technology={idd}', [GetProfessionsController::class, 'getProfessionsForInterview']);
 Route::get('/interview/new/sphere/direction/technology/profession={idd}', [PreviewPageController::class,'getPreviewPage']);
 Route::post('/interview/start', [InterviewStartController::class,'startInterview']);
+Route::post('/interview/question', [GetNextQuestionController::class,'getNextQuestion']);
 
 Route::post('/registration', [RegistrationController::class, 'createUserAction'])->name('registration');
 Route::post('/login', [AuthorizationController::class, 'loginUserAction'])->name('login');
+
+Route::get('/plan', function () {
+    return redirect('https://miro.com/app/board/uXjVPFkN4t0=/?share_link_id=228192283176');
+});

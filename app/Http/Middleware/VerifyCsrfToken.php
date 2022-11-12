@@ -14,6 +14,7 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         'registration',
         'login',
-        'interview/start'
+        'interview/start',
+        'interview/question'
     ];
 }

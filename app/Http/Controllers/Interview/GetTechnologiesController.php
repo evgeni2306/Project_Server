@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 
 class GetTechnologiesController extends Controller
 {
-    public function getTechnologiesForInterview($id): string|Response
+    public function getTechnologiesForInterview(int $id): string|Response
     {
 
         if (is_numeric($id) and $id > 0) {

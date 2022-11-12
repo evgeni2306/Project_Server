@@ -7,30 +7,25 @@ use App\Http\Controllers\Controller;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Models\User;
-use App\Models\Interview;
 use Illuminate\Support\Facades\Validator;
 
-class InterviewStartController extends Controller
+class GetNextQuestionController extends Controller
 {
-    public function startInterview(Request $request):int|Response
+    public function getNextQuestion(Request $request):string|Response|int
     {
-
         $validator = Validator::make($request->all(), [
             'key' => 'required|string|max:255|exists:users,key',
-            'profId' => 'required|integer|exists:professions,id'
+            'interviewId' => 'required|integer|exists:interviews,id'
         ]);
 
         if ($validator->fails()) {
             return Response(json_encode(['message' => 'Что-то пошло не так']), $status = 404, ['Content-Type' => 'string']);
         }
         $data = $validator->getData();
-        $userId = User::getIdByKey($data['key']);
-        $profId = (int)$data['profId'];
-        $interview = Interview::create(['user_id' => $userId, 'profession_id' => $profId]);
-
-        Task::createTasksForInterview($profId, $interview->id);
-
-        return $interview->id;
+        $task = Task::getQuestion((int)$data['interviewId']);
+        if ($task == null) {
+            return 0;
+        }
+        return json_encode($task);
     }
 }

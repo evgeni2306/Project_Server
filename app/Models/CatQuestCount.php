@@ -11,8 +11,20 @@ class CatQuestCount extends Model
 {
     use HasFactory;
 
-    static function getCountQuests(int $id): int
+    protected $fillable = [
+        'count',
+        'profession_id',
+        'category_id'
+
+    ];
+
+    static function getSumCountQuestsForProf(int $id): int
     {
         return (int)self::where('profession_id', $id)->sum('count');
+    }
+
+    static function getCountQuestsForProf(int $id)
+    {
+        return self::select('category_id', 'count')->where('profession_id', $id)->get();
     }
 }

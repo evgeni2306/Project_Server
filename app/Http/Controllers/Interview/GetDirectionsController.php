@@ -9,7 +9,7 @@ use Illuminate\Http\Response;
 
 class GetDirectionsController extends Controller
 {
-    public function getDirectionsForInterview($id): string|Response
+    public function getDirectionsForInterview(int $id): string|Response
     {
 
         if (is_numeric($id) and $id > 0) {

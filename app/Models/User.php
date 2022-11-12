@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Support\Facades\Hash;
@@ -33,7 +34,9 @@ class User extends Model
     {
         $this->attributes['key'] = Hash::make($key . self::SALT);
     }
-    static function getIdByKey($key){
+
+    static function getIdByKey($key)
+    {
         return self::where('key', $key)->select('id')->get()[0]->id;
     }
 }
