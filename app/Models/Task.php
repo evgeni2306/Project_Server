@@ -19,7 +19,7 @@ class Task extends Model
         'status' => null,
     ];
 
-    static function getQuestion(int $interviewId):Task
+    static function getQuestion(int $interviewId):Task|null
     {
         $task = Task::join('questions', 'question_id', '=', 'questions.id')
             ->join('categories', 'questions.category_id', '=', 'categories.id')

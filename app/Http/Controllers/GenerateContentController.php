@@ -9,6 +9,7 @@ use App\Models\Sphere;
 use App\Models\Technology;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Question;
 use App\Models\CatQuestCount;
 use Illuminate\Http\Request;
 
@@ -60,6 +61,11 @@ class GenerateContentController extends Controller
         $countPHP=CatQuestCount::create(['count'=>10,'profession_id'=>$juniorPHP->id,'category_id'=>$catPhp->id]);
         $countSQLPHP=CatQuestCount::create(['count'=>10,'profession_id'=>$juniorPHP->id,'category_id'=>$catSQL->id]);
         $countCSharp=CatQuestCount::create(['count'=>10,'profession_id'=>$juniorCSharp->id,'category_id'=>$catCSharp->id]);
+
+        $question1=Question::create(['category_id'=>$catPhp->id,'question'=>'что такое массив','answer'=>'массив - ответ','creator_id'=>$user->id]);
+        $question1=Question::create(['category_id'=>$catPhp->id,'question'=>'что такое интерфейс','answer'=>'интерфейс - ответ','creator_id'=>$user->id]);
+        $question1=Question::create(['category_id'=>$catPhp->id,'question'=>'что такое класс','answer'=>'класс - ответ','creator_id'=>$user->id]);
+        $question1=Question::create(['category_id'=>$catPhp->id,'question'=>'что такое трейт','answer'=>'трейт - ответ','creator_id'=>$user->id]);
         dd('ok');
     }
 

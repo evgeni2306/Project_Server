@@ -19,4 +19,24 @@ class Interview extends Model
     protected $attributes = [
         'status' => null,
     ];
+
+    static function getInterviewResults(int $interviewId): \stdClass
+    {
+        $countRight = Task::where('interview_id', $interviewId)->where('status', 1)->count();
+        $countWrong = Task::where('interview_id', $interviewId)->where('status', 0)->count();
+        $wrongQuestions = Task::join('questions', 'question_id', '=', 'questions.id')
+            ->join('categories', 'questions.category_id', '=', 'categories.id')
+            ->select('questions.id as questionId', 'questions.question', 'answer', 'categories.name as category')
+            ->where('interview_id', '=', $interviewId)
+            ->where('status', '=', 0)
+            ->get();
+        return (object)array('countRight' => $countRight, 'countWrong' => $countWrong, 'wrongQuestions' => $wrongQuestions);
+
+    }
+
+    static function changeInterviewStatus(int $interviewId): void
+    {
+        self::where('id', $interviewId)
+            ->update(['status' => 1]);
+    }
 }

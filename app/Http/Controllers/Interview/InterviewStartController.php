@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Validator;
 
 class InterviewStartController extends Controller
 {
-    public function startInterview(Request $request):int|Response
+    public function startInterview(Request $request): int|Response
     {
 
         $validator = Validator::make($request->all(), [
-            'key' => 'required|string|max:255|exists:users,key',
+            'authKey' => 'required|string|max:255|exists:users,key',
             'profId' => 'required|integer|exists:professions,id'
         ]);
 
@@ -25,7 +25,7 @@ class InterviewStartController extends Controller
             return Response(json_encode(['message' => 'Что-то пошло не так']), $status = 404, ['Content-Type' => 'string']);
         }
         $data = $validator->getData();
-        $userId = User::getIdByKey($data['key']);
+        $userId = User::getIdByKey($data['authKey']);
         $profId = (int)$data['profId'];
         $interview = Interview::create(['user_id' => $userId, 'profession_id' => $profId]);
 

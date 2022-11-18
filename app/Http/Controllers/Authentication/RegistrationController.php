@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Authentication;
 
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class RegistrationController extends Controller
@@ -24,7 +24,7 @@ class RegistrationController extends Controller
             return Response(json_encode(['message' => $validator->errors()->first()]), $status = 404, ['Content-Type' => 'string']);
         }
         $fields = $request->all();
-        $fields['key']=time();
+        $fields['key'] = time();
         $user = User::create($fields);
         return json_encode(['key' => $user['key']]);
     }

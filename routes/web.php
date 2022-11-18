@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\AuthorizationController;
-use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\Authentication\AuthorizationController;
+use App\Http\Controllers\Authentication\RegistrationController;
 use App\Http\Controllers\GenerateContentController;
 use App\Http\Controllers\Interview\GetSpheresController;
 use App\Http\Controllers\Interview\GetTechnologiesController;
+use App\Http\Controllers\Interview\GetResultsController;
 use App\Http\Controllers\Interview\GetProfessionsController;
 use App\Http\Controllers\Interview\GetDirectionsController;
 use App\Http\Controllers\Interview\InterviewStartController;
@@ -38,6 +39,11 @@ Route::get('/interview/new/sphere/direction/technology={idd}', [GetProfessionsCo
 Route::get('/interview/new/sphere/direction/technology/profession={idd}', [PreviewPageController::class,'getPreviewPage']);
 Route::post('/interview/start', [InterviewStartController::class,'startInterview']);
 Route::post('/interview/question', [GetNextQuestionController::class,'getNextQuestion']);
+Route::post('/interview/results', [GetResultsController::class,'getResults']);
+
+
+
+
 
 Route::post('/registration', [RegistrationController::class, 'createUserAction'])->name('registration');
 Route::post('/login', [AuthorizationController::class, 'loginUserAction'])->name('login');

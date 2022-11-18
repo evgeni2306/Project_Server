@@ -10,14 +10,14 @@ use App\Models\CatQuestCount;
 
 class PreviewPageController extends Controller
 {
-    public function getPreviewPage( int $id):Response|string
+    public function getPreviewPage(int $profId): Response|string
     {
-        if (is_numeric($id) and $id > 0) {
+        if (is_numeric($profId) and $profId > 0) {
 
-            $profession = Profession::getProfById((int)$id);
+            $profession = Profession::getProfById((int)$profId);
             if (count($profession) != 0) {
                 $profession = json_decode(json_encode($profession[0]));
-                $profession->count = CatQuestCount::getSumCountQuestsForProf((int)$id);
+                $profession->count = CatQuestCount::getSumCountQuestsForProf((int)$profId);
                 return json_encode($profession);
             }
 

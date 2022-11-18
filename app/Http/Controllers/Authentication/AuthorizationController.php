@@ -1,13 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Authentication;
 
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\Controller;
 
 class AuthorizationController extends Controller
 {
@@ -21,7 +23,7 @@ class AuthorizationController extends Controller
             return Response(json_encode(['message' => 'Поле заполненно некорректно']), $status = 404, ['Content-Type' => 'string']);
         }
         if (Auth::attempt($request->all('login', 'password'))) {
-           return json_encode(['key'=>Auth::user()->key]);
+            return json_encode(['key' => Auth::user()->key]);
         }
         return Response(json_encode(['message' => 'Не удалось авторизоваться, проверьте правильность заполнения полей']), $status = 404, ['Content-Type' => 'string']);
 

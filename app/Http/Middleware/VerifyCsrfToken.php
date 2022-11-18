@@ -15,6 +15,7 @@ class VerifyCsrfToken extends Middleware
         'registration',
         'login',
         'interview/start',
-        'interview/question'
+        'interview/question',
+        'interview/results'
     ];
 }
