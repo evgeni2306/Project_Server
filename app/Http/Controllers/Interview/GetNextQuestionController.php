@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Interview;
 use App\Models\InterviewTemplate;
 use App\Models\Task;
-use App\Models\Profession;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
@@ -20,7 +19,6 @@ class GetNextQuestionController extends Controller
             'authKey' => 'required|string|max:255|exists:users,key',
             'interviewId' => 'required|integer|exists:interviews,id'
         ]);
-
         if ($validator->fails()) {
             return Response(json_encode(['message' => 'Что-то пошло не так']), $status = 404, ['Content-Type' => 'string']);
         }

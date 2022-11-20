@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 
 class InterviewStartController extends Controller
 {
-    public function startInterview(Request $request): int|Response
+    public function startInterview(Request $request): string|Response
     {
 
         $validator = Validator::make($request->all(), [
@@ -31,6 +31,6 @@ class InterviewStartController extends Controller
 
         Task::createTasksForInterview($profId, $interview->id);
 
-        return $interview->id;
+        return json_encode(['interviewId' => $interview->id]);
     }
 }

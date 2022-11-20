@@ -15,9 +15,13 @@ class InterviewTemplate extends Model
         'profession_id'
     ];
 
-    static function createTemplate(int $interviewId):void
+    static function createTemplate(int $interviewId): void
     {
-        $data = Interview::select('user_id', 'profession_id')->where('id', $interviewId)->first();
-        self::create(['user_id' => $data->user_id, 'profession_id' => $data->profession_id]);
+        $data = Interview::select('user_id', 'profession_id')->where('id', '=', $interviewId)->first();
+        $check = self::where('user_id', '=', $data->user_id)->where('profession_id', '=', $data->profession_id)->first();
+        if ($check == null) {
+            self::create(['user_id' => $data->user_id, 'profession_id' => $data->profession_id]);
+        }
+
     }
 }

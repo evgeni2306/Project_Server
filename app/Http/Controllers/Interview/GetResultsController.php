@@ -20,7 +20,7 @@ class GetResultsController extends Controller
             return Response(json_encode(['message' => 'Что-то пошло не так']), $status = 404, ['Content-Type' => 'string']);
         }
         $data = $validator->getData();
-        $x = Interview::getInterviewResults((int)$data["interviewId"]);
-        return $x;
+        $result = Interview::getInterviewResults((int)$data["interviewId"]);
+        return $result;
     }
 }

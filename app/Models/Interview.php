@@ -22,8 +22,8 @@ class Interview extends Model
 
     static function getInterviewResults(int $interviewId): \stdClass
     {
-        $countRight = Task::where('interview_id', $interviewId)->where('status', 1)->count();
-        $countWrong = Task::where('interview_id', $interviewId)->where('status', 0)->count();
+        $countRight = Task::where('interview_id', $interviewId)->where('status', '=', 1)->count();
+        $countWrong = Task::where('interview_id', $interviewId)->where('status', '=', 0)->count();
         $wrongQuestions = Task::join('questions', 'question_id', '=', 'questions.id')
             ->join('categories', 'questions.category_id', '=', 'categories.id')
             ->select('questions.id as questionId', 'questions.question', 'answer', 'categories.name as category')
@@ -36,7 +36,7 @@ class Interview extends Model
 
     static function changeInterviewStatus(int $interviewId): void
     {
-        self::where('id', $interviewId)
+        self::where('id', '=', $interviewId)
             ->update(['status' => 1]);
     }
 }

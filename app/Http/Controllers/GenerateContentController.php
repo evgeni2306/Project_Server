@@ -21,7 +21,7 @@ class GenerateContentController extends Controller
             'name' => 'admin',
             'surname' => 'admin',
             'login' => 'admin',
-            'password' => 'admin'];
+            'password' => 'admin',];
         $userFields['key'] = time();
         $user = User::create($userFields);
 

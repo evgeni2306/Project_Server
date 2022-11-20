@@ -20,7 +20,7 @@ class CatQuestCount extends Model
 
     static function getSumCountQuestsForProf(int $id): int
     {
-        return (int)self::where('profession_id', $id)->sum('count');
+        return (int)self::where('profession_id', '=', $id)->sum('count');
     }
 
     static function getCountQuestsForProf(int $id)
