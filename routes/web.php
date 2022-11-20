@@ -11,6 +11,7 @@ use App\Http\Controllers\Interview\GetDirectionsController;
 use App\Http\Controllers\Interview\InterviewStartController;
 use App\Http\Controllers\Interview\PreviewPageController;
 use App\Http\Controllers\Interview\GetNextQuestionController;
+use App\Http\Controllers\Interview\AnswerTaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,7 @@ Route::get('/interview/new/sphere/direction/technology={idd}', [GetProfessionsCo
 Route::get('/interview/new/sphere/direction/technology/profession={idd}', [PreviewPageController::class,'getPreviewPage']);
 Route::post('/interview/start', [InterviewStartController::class,'startInterview']);
 Route::post('/interview/question', [GetNextQuestionController::class,'getNextQuestion']);
+Route::post('/interview/question/answer', [AnswerTaskController::class,'answerTask']);
 Route::post('/interview/results', [GetResultsController::class,'getResults']);
 
 

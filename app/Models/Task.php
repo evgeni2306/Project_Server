@@ -43,4 +43,15 @@ class Task extends Model
             }
         }
     }
+
+    static function answerTask(int $taskId, bool $answer)
+    {
+        $task = self::find($taskId);
+        if($task->status==null){
+            $task->status = $answer;
+            $task->save();
+            return true;
+        }
+        return false;
+    }
 }
