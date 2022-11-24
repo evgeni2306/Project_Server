@@ -23,8 +23,8 @@ class AnswerTaskController extends Controller
         }
         $data = $validator->getData();
         $task = Task::answerTask((int)$data['taskId'], (bool)$data['answer']);
-        if($task!=null){
-return 1;
+        if ($task != null) {
+            return 1;
         }
         return Response(json_encode(['message' => 'Что-то пошло не так']), $status = 501, ['Content-Type' => 'string']);
 
