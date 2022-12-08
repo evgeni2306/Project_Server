@@ -20,7 +20,7 @@ class GetNextQuestionController extends Controller
             'interviewId' => 'required|integer|exists:interviews,id'
         ]);
         if ($validator->fails()) {
-            return Response(json_encode(['message' => 'Что-то пошло не так']), $status = 404, ['Content-Type' => 'string']);
+            return Response(json_encode(['message' => 'Запрос не проходит валидацию']), $status = 404, ['Content-Type' => 'string']);
         }
         $interviewId = (int)$validator->getData()['interviewId'];
         $task = Task::getQuestion($interviewId);
