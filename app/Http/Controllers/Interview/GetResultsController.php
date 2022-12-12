@@ -21,6 +21,6 @@ class GetResultsController extends Controller
         }
         $data = $validator->getData();
         $result = Interview::getInterviewResults((int)$data["interviewId"]);
-        return $result;
+        return json_encode($result);
     }
 }

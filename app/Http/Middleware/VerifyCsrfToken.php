@@ -18,7 +18,7 @@ class VerifyCsrfToken extends Middleware
         'interview/results',
         'interview/question',
         'interview/question/answer',
-        'question/favorite',
+        'question/favorite/add',
         'question/favorite/delete',
         'interview/templates',
         'interview/templates/delete'

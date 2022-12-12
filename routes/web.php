@@ -44,10 +44,10 @@ Route::post('/interview/templates', [InterviewTemplateController::class, 'getTem
 Route::post('/interview/templates/delete', [InterviewTemplateController::class, 'deleteTemplate']);
 Route::post('/interview/start', [InterviewStartController::class, 'startInterview']);
 Route::post('/interview/question', [GetNextQuestionController::class, 'getNextQuestion']);
-Route::post('/question/favorite', [FavoriteQuestionController::class, 'addFavorite']);
-Route::post('/question/favorite/delete', [FavoriteQuestionController::class, 'deleteFavorite']);
 Route::post('/interview/question/answer', [AnswerTaskController::class, 'answerTask']);
 Route::post('/interview/results', [GetResultsController::class, 'getResults']);
+Route::post('/question/favorite/add', [FavoriteQuestionController::class, 'addFavorite']);
+Route::post('/question/favorite/delete', [FavoriteQuestionController::class, 'deleteFavorite']);
 
 
 Route::post('/registration', [RegistrationController::class, 'createUserAction'])->name('registration');

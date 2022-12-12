@@ -23,7 +23,7 @@ class Task extends Model
     {
         $task = Task::join('questions', 'question_id', '=', 'questions.id')
             ->join('categories', 'questions.category_id', '=', 'categories.id')
-            ->select('tasks.id as taskId', 'questions.question', 'answer', 'categories.name as category', 'interview_id as interviewId')
+            ->select('tasks.id as taskId', 'questions.question', 'answer', 'categories.name as category', 'question_id as questionId')
             ->where('interview_id', '=', $interviewId)
             ->where('status', '=', null)
             ->first();
