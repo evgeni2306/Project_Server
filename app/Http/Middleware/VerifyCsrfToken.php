@@ -21,6 +21,9 @@ class VerifyCsrfToken extends Middleware
         'question/favorite/add',
         'question/favorite/delete',
         'interview/templates',
-        'interview/templates/delete'
+        'interview/templates/delete',
+
+        'knowledgebase/professions',
+        'knowledgebase/professions/questions'
     ];
 }

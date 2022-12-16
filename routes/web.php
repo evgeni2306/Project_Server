@@ -16,6 +16,8 @@ use App\Http\Controllers\Interview\AnswerTaskController;
 use App\Http\Controllers\FavoriteQuestionController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\KnowledgeBase\GetProfessionsController as KB_GetProfessionsController;
+use App\Http\Controllers\KnowledgeBase\GetQuestionsController as KB_GetQuestionsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,6 +50,12 @@ Route::post('/interview/question/answer', [AnswerTaskController::class, 'answerT
 Route::post('/interview/results', [GetResultsController::class, 'getResults']);
 Route::post('/question/favorite/add', [FavoriteQuestionController::class, 'addFavorite']);
 Route::post('/question/favorite/delete', [FavoriteQuestionController::class, 'deleteFavorite']);
+
+
+Route::post('/knowledgebase/professions', [KB_GetProfessionsController::class, 'getProfessionsForKnowledgeBase']);
+Route::post('/knowledgebase/professions/questions', [KB_GetQuestionsController::class, 'getQuestionsForKnowledgeBase']);
+
+
 
 
 Route::post('/registration', [RegistrationController::class, 'createUserAction'])->name('registration');
