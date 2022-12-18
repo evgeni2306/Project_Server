@@ -23,8 +23,8 @@ class FavoriteQuestionController extends Controller
         $data = $validator->getData();
         $userId = User::getIdByKey($data['authKey']);
         try {
-            FavoriteQuestion::create(['user_id' => $userId, 'question_id' => $data['questionId']]);
-            return 1;
+            $favoriteQuestion = FavoriteQuestion::create(['user_id' => $userId, 'question_id' => $data['questionId']]);
+            return $favoriteQuestion->id;
         } catch (\Exception $exp) {
             return Response(json_encode(['message' => 'Что-то пошло не так']), $status = 404, ['Content-Type' => 'string']);
         }

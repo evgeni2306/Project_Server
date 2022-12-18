@@ -29,7 +29,7 @@ class InterviewTemplate extends Model
     static function getTemplates(int $userId): Collection
     {
         $templates = self::join('professions', 'profession_id', '=', 'professions.id')
-            ->select('interview_templates.id', 'professions.name')
+            ->select('profession_id as professionId','interview_templates.id', 'professions.name')
             ->where('user_id', '=', $userId)
             ->get();
         return $templates;
