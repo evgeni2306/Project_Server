@@ -4,9 +4,11 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Interview;
 
 use App\Http\Controllers\Controller;
+use App\Models\FavoriteQuestion;
 use App\Models\Interview;
 use App\Models\InterviewTemplate;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
@@ -22,7 +24,10 @@ class GetNextQuestionController extends Controller
         if ($validator->fails()) {
             return Response(json_encode(['message' => 'Запрос не проходит валидацию']), $status = 404, ['Content-Type' => 'string']);
         }
-        $interviewId = (int)$validator->getData()['interviewId'];
+        $data = $validator->getData();
+        $interviewId = (int)$data['interviewId'];
+        $userId = User::getIdByKey($data['authKey']);
+
         $task = Task::getQuestion($interviewId);
         if ($task == null) {
             Interview::changeInterviewStatus($interviewId);
@@ -30,6 +35,7 @@ class GetNextQuestionController extends Controller
             return Response(json_encode(['message' => 'Нет вопросов']), $status = 204, ['Content-Type' => 'string']);
 
         }
-        return json_encode($task);
+        $x = FavoriteQuestion::checkFavorite($task, $userId);
+        return json_encode($x);
     }
 }

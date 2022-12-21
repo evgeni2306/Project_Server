@@ -62,10 +62,26 @@ class GenerateContentController extends Controller
         $countSQLPHP=CatQuestCount::create(['count'=>10,'profession_id'=>$juniorPHP->id,'category_id'=>$catSQL->id]);
         $countCSharp=CatQuestCount::create(['count'=>10,'profession_id'=>$juniorCSharp->id,'category_id'=>$catCSharp->id]);
 
-        $question1=Question::create(['category_id'=>$catPhp->id,'question'=>'что такое массив','answer'=>'массив - ответ','creator_id'=>$user->id]);
-        $question1=Question::create(['category_id'=>$catPhp->id,'question'=>'что такое интерфейс','answer'=>'интерфейс - ответ','creator_id'=>$user->id]);
-        $question1=Question::create(['category_id'=>$catPhp->id,'question'=>'что такое класс','answer'=>'класс - ответ','creator_id'=>$user->id]);
-        $question1=Question::create(['category_id'=>$catPhp->id,'question'=>'что такое трейт','answer'=>'трейт - ответ','creator_id'=>$user->id]);
+        $question1=Question::create(['category_id'=>$catPhp->id,'question'=>'что такое массив в php','answer'=>'массив - ответ','creator_id'=>$user->id]);
+        $question1=Question::create(['category_id'=>$catPhp->id,'question'=>'что такое интерфейс в php','answer'=>'интерфейс - ответ','creator_id'=>$user->id]);
+        $question1=Question::create(['category_id'=>$catPhp->id,'question'=>'что такое класс в php ','answer'=>'класс - ответ','creator_id'=>$user->id]);
+        $question1=Question::create(['category_id'=>$catPhp->id,'question'=>'что такое трейт в php','answer'=>'трейт - ответ','creator_id'=>$user->id]);
+
+        $question1=Question::create(['category_id'=>$catCSharp->id,'question'=>'что такое массив в c#','answer'=>'массив - ответ','creator_id'=>$user->id]);
+        $question1=Question::create(['category_id'=>$catCSharp->id,'question'=>'что такое интерфейс в c#','answer'=>'интерфейс - ответ','creator_id'=>$user->id]);
+        $question1=Question::create(['category_id'=>$catCSharp->id,'question'=>'что такое класс в c#','answer'=>'класс - ответ','creator_id'=>$user->id]);
+        $question1=Question::create(['category_id'=>$catCSharp->id,'question'=>'что такое трейт в c#','answer'=>'трейт - ответ','creator_id'=>$user->id]);
+
+        $question1=Question::create(['category_id'=>$catKotlin->id,'question'=>'что такое массив в kotlin','answer'=>'массив - ответ','creator_id'=>$user->id]);
+        $question1=Question::create(['category_id'=>$catKotlin->id,'question'=>'что такое интерфейс в kotlin','answer'=>'интерфейс - ответ','creator_id'=>$user->id]);
+        $question1=Question::create(['category_id'=>$catKotlin->id,'question'=>'что такое класс в kotlin','answer'=>'класс - ответ','creator_id'=>$user->id]);
+        $question1=Question::create(['category_id'=>$catKotlin->id,'question'=>'что такое трейт в kotlin','answer'=>'трейт - ответ','creator_id'=>$user->id]);
+
+        $question1=Question::create(['category_id'=>$catJavascript->id,'question'=>'что такое массив в js','answer'=>'массив - ответ','creator_id'=>$user->id]);
+        $question1=Question::create(['category_id'=>$catJavascript->id,'question'=>'что такое интерфейс в js','answer'=>'интерфейс - ответ','creator_id'=>$user->id]);
+        $question1=Question::create(['category_id'=>$catJavascript->id,'question'=>'что такое класс в js','answer'=>'класс - ответ','creator_id'=>$user->id]);
+        $question1=Question::create(['category_id'=>$catJavascript->id,'question'=>'что такое трейт в js','answer'=>'трейт - ответ','creator_id'=>$user->id]);
+
         dd('ok');
     }
 
