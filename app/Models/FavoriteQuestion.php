@@ -15,18 +15,18 @@ class FavoriteQuestion extends Model
         'question_id',
     ];
 
-    static function checkFavorite(Task $task, int $userId):Task
+    static function checkFavorite(Task|Question $question, int $userId): Task|Question
     {
-        $favorite = self::where('question_id', '=', $task->questionId)
+        $favorite = self::where('question_id', '=', $question->questionId)
             ->where('user_id', '=', $userId)->first();
 
         if ($favorite != null) {
-            $task->isFavorite = 1;
-            $task->favoriteId = $favorite->id;
-            return $task;
+            $question->isFavorite = 1;
+            $question->favoriteId = $favorite->id;
+            return $question;
         }
-        $task->isFavorite = 0;
-        $task->favoriteId = 0;
-        return $task;
+        $question->isFavorite = 0;
+        $question->favoriteId = 0;
+        return $question;
     }
 }

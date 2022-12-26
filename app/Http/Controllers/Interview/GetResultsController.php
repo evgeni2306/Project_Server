@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Interview;
 
+use App\Models\FavoriteQuestion;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -21,6 +23,10 @@ class GetResultsController extends Controller
         }
         $data = $validator->getData();
         $result = Interview::getInterviewResults((int)$data["interviewId"]);
+        $userId = User::getIdByKey($data['authKey']);
+        foreach($result->wrongQuestions as $item){
+           $item= FavoriteQuestion::checkFavorite($item, $userId);
+        }
         return json_encode($result);
     }
 }
