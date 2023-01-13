@@ -17,7 +17,7 @@ class FavoriteQuestion extends Model
 
     static function checkFavorite(Task|Question $question, int $userId): Task|Question
     {
-        $favorite = self::where('question_id', '=', $question->questionId)
+        $favorite = self::query()->where('question_id', '=', $question->questionId)
             ->where('user_id', '=', $userId)->first();
 
         if ($favorite != null) {
@@ -28,5 +28,15 @@ class FavoriteQuestion extends Model
         $question->isFavorite = 0;
         $question->favoriteId = 0;
         return $question;
+    }
+    static function getFavoriteList(int $userId): array|\Illuminate\Database\Eloquent\Collection
+    {
+        $favoriteList = self::query()
+            ->join('questions', 'questions.id', '=', 'question_id')
+            ->join('categories', 'categories.id', '=', 'category_id')
+            ->select('favorite_questions.id as favoriteId','question','answer','categories.name as category')
+            ->where('user_id','=',$userId)
+            ->get();
+        return $favoriteList;
     }
 }

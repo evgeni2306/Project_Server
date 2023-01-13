@@ -19,6 +19,6 @@ class Technology extends Model
 
     static function getTechByDirectionId(int $id): Collection
     {
-        return self::where('direction_id', '=', $id)->select('id', 'name')->get();
+        return self::query()->where('direction_id', '=', $id)->select('id', 'name')->get();
     }
 }

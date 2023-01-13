@@ -20,7 +20,7 @@ class Direction extends Model
 
     static function getDirBySphereId(int $id)
     {
-        $directions = self::where('sphere_id', '=', $id)->select('id', 'name')->get();
+        $directions = self::query()->where('sphere_id', '=', $id)->select('id', 'name')->get();
         foreach ($directions as $dir) {
             $dir->id = (int)$dir->id;
         }

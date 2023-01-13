@@ -21,7 +21,7 @@ class Task extends Model
 
     static function getQuestion(int $interviewId): Task|null
     {
-        $task = Task::join('questions', 'question_id', '=', 'questions.id')
+        $task = Task::query()->join('questions', 'question_id', '=', 'questions.id')
             ->join('categories', 'questions.category_id', '=', 'categories.id')
             ->select('tasks.id as taskId', 'questions.question','tasks.id as favoriteId','tasks.id as isFavorite', 'answer', 'categories.name as category', 'question_id as questionId')
             ->where('interview_id', '=', $interviewId)
@@ -32,13 +32,13 @@ class Task extends Model
 
     static function createTasksForInterview(int $id, int $interviewId): void
     {
-        $catQuestCount = CatQuestCount::select('category_id', 'count')->where('profession_id', $id)->get();
+        $catQuestCount = CatQuestCount::query()->select('category_id', 'count')->where('profession_id', $id)->get();
         foreach ($catQuestCount as $var) {
-            $question = Question::select('id as question_id')->inRandomOrder()->where('category_id', $var->category_id)->get();
+            $question = Question::query()->select('id as question_id')->inRandomOrder()->where('category_id', $var->category_id)->get();
             foreach ($question as $var1) {
                 $var1->interview_id = $interviewId;
                 $var1 = json_decode(json_encode($var1), true);
-                self::create($var1);
+                self::query()->create($var1);
 
             }
         }
@@ -46,7 +46,7 @@ class Task extends Model
 
     static function answerTask(int $taskId, bool $answer)
     {
-        $task = self::find($taskId);
+        $task = self::query()->find($taskId);
         if($task->status==null){
             $task->status = $answer;
             $task->save();

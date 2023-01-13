@@ -18,12 +18,12 @@ class Profession extends Model
     ];
     static function getProfByTechnologyId(int $id): Collection
     {
-        return self::where('technology_id', $id)->select('id', 'name')->get();
+        return self::query()->where('technology_id', $id)->select('id', 'name')->get();
     }
 
     static function getProfById(int $id): Collection
     {
-        return self::where('id', $id)->select('id', 'name')->get();
+        return self::query()->where('id', $id)->select('id', 'name')->get();
     }
 
 }

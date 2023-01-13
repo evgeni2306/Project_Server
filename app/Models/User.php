@@ -37,6 +37,6 @@ class User extends Model
 
     static function getIdByKey($key)
     {
-        return self::where('key', $key)->select('id')->get()[0]->id;
+        return self::query()->where('key', $key)->select('id')->get()[0]->id;
     }
 }

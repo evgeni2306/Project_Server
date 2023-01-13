@@ -20,7 +20,7 @@ class GetProfessionsController extends Controller
         if ($validator->fails()) {
             return Response(json_encode(['message' => 'Запрос не проходит валидацию']), $status = 404, ['Content-Type' => 'string']);
         }
-        $professions = Profession::all('id', 'name');
+        $professions = Profession::all('id as profId', 'name');
 
         return json_encode($professions);
 

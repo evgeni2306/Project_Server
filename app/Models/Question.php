@@ -20,10 +20,10 @@ class Question extends Model
 
     static function getQuestionsByProfId(int $id): Collection
     {
-        $questions = self::join('cat_quest_counts', 'questions.category_id', '=', 'cat_quest_counts.category_id')
+        $questions = self::query()->join('cat_quest_counts', 'questions.category_id', '=', 'cat_quest_counts.category_id')
             ->join('professions', 'profession_id', '=', 'professions.id')
             ->join('categories', 'categories.id', '=', 'questions.category_id')
-            ->select('questions.id as questionId', 'questions.question','categories.name')
+            ->select('questions.id as questionId', 'questions.question','questions.answer','categories.name as category')
             ->where('professions.id', '=', $id)
             ->get();
         return $questions;

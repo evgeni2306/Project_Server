@@ -13,7 +13,8 @@ use App\Http\Controllers\Interview\InterviewStartController;
 use App\Http\Controllers\Interview\PreviewPageController;
 use App\Http\Controllers\Interview\GetNextQuestionController;
 use App\Http\Controllers\Interview\AnswerTaskController;
-use App\Http\Controllers\FavoriteQuestionController;
+use App\Http\Controllers\FavoriteSection\GetFavoriteQuestController;
+use App\Http\Controllers\FavoriteSection\FavoriteQuestionController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\KnowledgeBase\GetProfessionsController as KB_GetProfessionsController;
@@ -48,6 +49,8 @@ Route::post('/interview/start', [InterviewStartController::class, 'startIntervie
 Route::post('/interview/question', [GetNextQuestionController::class, 'getNextQuestion']);
 Route::post('/interview/question/answer', [AnswerTaskController::class, 'answerTask']);
 Route::post('/interview/results', [GetResultsController::class, 'getResults']);
+
+Route::post('/question/favorite/list', [GetFavoriteQuestController::class, 'getFavoriteList']);
 Route::post('/question/favorite/add', [FavoriteQuestionController::class, 'addFavorite']);
 Route::post('/question/favorite/delete', [FavoriteQuestionController::class, 'deleteFavorite']);
 
